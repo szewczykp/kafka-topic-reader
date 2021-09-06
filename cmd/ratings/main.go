@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"kafka_topic_reader/config"
 	"kafka_topic_reader/dependency"
+	"kafka_topic_reader/domain/interactor"
 )
 
 func main() {
@@ -18,14 +19,13 @@ func main() {
 		defer dependency.Close(db)
 	}
 
-	//ratingInteractor := interactor.NewRatingInteractor(
-	//	dependency.NewRatingRepository(db),
-	//	dependency.NewIdGenerator(),
-	//)
+	ratingInteractor := interactor.NewRatingInteractor(
+		dependency.NewRatingRepository(db),
+		dependency.NewRatingConsumer(kafkaProperties),
+		dependency.NewIdGenerator(),
+	)
 
-	ratingConsumer := dependency.NewRatingConsumer(kafkaProperties)
-	ratingConsumer.GetRatingMessage()
-
+	ratingInteractor.GetIncomingMessage()
 }
 
 
