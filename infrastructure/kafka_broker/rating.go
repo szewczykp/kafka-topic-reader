@@ -16,7 +16,7 @@ func (rc *ratingConsumer) GetRatingMessage() {
 	for {
 		message, err := rc.consumer.ReadMessage(-1)
 
-		if (err == nil) {
+		if err == nil {
 			fmt.Printf("Received from Kafka %s: %s\n", message.TopicPartition, string(message.Value))
 		} else {
 			fmt.Printf("Consumer error: %v (%v)\n", err, message)
