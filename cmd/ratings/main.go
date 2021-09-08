@@ -25,7 +25,13 @@ func main() {
 		dependency.NewIdGenerator(),
 	)
 
-	ratingInteractor.GetIncomingMessage()
+	for {
+		err := ratingInteractor.GetIncomingMessage()
+
+		if err != nil {
+			break
+		}
+	}
 }
 
 
