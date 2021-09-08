@@ -1,6 +1,7 @@
 package postgres
 
 import (
+	"fmt"
 	"github.com/go-pg/pg/v9"
 	"kafka_topic_reader/domain/entity"
 	"kafka_topic_reader/domain/repository"
@@ -17,6 +18,7 @@ func (r *ratingRepository) Save(rating *entity.Rating) error {
 		return err
 	}
 
+	fmt.Printf("Rating was saved to database: %+v\n", rating)
 	return nil
 }
 

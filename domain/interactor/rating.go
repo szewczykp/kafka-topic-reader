@@ -1,7 +1,6 @@
 package interactor
 
 import (
-	"fmt"
 	"kafka_topic_reader/domain/broker"
 	"kafka_topic_reader/domain/entity"
 	"kafka_topic_reader/domain/repository"
@@ -16,17 +15,18 @@ type RatingInteractor interface {
 
 type ratingInteractor struct {
 	ratingRepository repository.RatingRepository
-	ratingConsumer broker.RatingConsumer
-	idGenerator tool.IdGenerator
+	ratingConsumer   broker.RatingConsumer
+	idGenerator      tool.IdGenerator
 }
 
 // GetIncomingMessage TODO: transfer incoming message to new struct. Save message to DB
 func (ri *ratingInteractor) GetIncomingMessage() error {
 	ratingMessage, err := ri.ratingConsumer.GetRatingMessage()
+	rating := entity.Rating(ratingMessage)
 
 	if err == nil {
-		fmt.Printf("Rating Message from Kafka broker %+v\n", ratingMessage)
-	}else {
+		ri.create(&rating)
+	} else {
 		return err
 	}
 
@@ -45,10 +45,10 @@ func NewRatingInteractor(
 	ratingRepository repository.RatingRepository,
 	ratingConsumer broker.RatingConsumer,
 	idGenerator tool.IdGenerator,
-	) RatingInteractor{
+) RatingInteractor {
 	return &ratingInteractor{
 		ratingRepository: ratingRepository,
-		ratingConsumer: ratingConsumer,
-		idGenerator: idGenerator,
+		ratingConsumer:   ratingConsumer,
+		idGenerator:      idGenerator,
 	}
 }

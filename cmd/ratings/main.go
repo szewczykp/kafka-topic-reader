@@ -25,6 +25,7 @@ func main() {
 		dependency.NewIdGenerator(),
 	)
 
+	fmt.Println("Start receiving from Kafka")
 	for {
 		err := ratingInteractor.GetIncomingMessage()
 
@@ -33,5 +34,3 @@ func main() {
 		}
 	}
 }
-
-
