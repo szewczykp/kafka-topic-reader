@@ -24,7 +24,7 @@ func NewRatingConsumer() broker.RatingConsumer {
 	subscriberError := kafkaConsumer.Subscribe(consumerTopicName, nil)
 
 	if subscriberError != nil {
-		panic(err)
+		panic(subscriberError)
 	}
 
 	return kafka_broker.NewRatingConsumer(kafkaConsumer)
