@@ -6,7 +6,6 @@ require (
 	github.com/confluentinc/confluent-kafka-go v1.7.0
 	github.com/go-pg/pg/v9 v9.2.1
 	github.com/google/uuid v1.3.0
-	github.com/magiconair/properties v1.8.5
 	github.com/stretchr/testify v1.6.1
 )
 

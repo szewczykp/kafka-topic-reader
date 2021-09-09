@@ -19,7 +19,6 @@ type ratingInteractor struct {
 	idGenerator      tool.IdGenerator
 }
 
-// GetIncomingMessage TODO: transfer incoming message to new struct. Save message to DB
 func (ri *ratingInteractor) GetIncomingMessage() error {
 	ratingMessage, err := ri.ratingConsumer.GetRatingMessage()
 	rating := entity.Rating(ratingMessage)
