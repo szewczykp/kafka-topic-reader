@@ -13,7 +13,7 @@ func TestRating(t *testing.T) {
 	expectedValue := int8(5)
 
 	jsonString := fmt.Sprintf(
-		"{\"id\": \"%s\", \"recipe_id\": \"%s\", \"value\": %d}",
+		"{\"Id\": \"%s\", \"RecipeId\": \"%s\", \"Value\": %d}",
 		expectedId,
 		expectedRecipeId,
 		expectedValue,
@@ -35,7 +35,7 @@ func TestRating_WithInvalidType(t *testing.T) {
 	expectedValue := int8(5)
 
 	jsonString := fmt.Sprintf(
-		"{\"id\": \"%s\", \"recipe_id\": %d, \"value\": %d}",
+		"{\"Id\": \"%s\", \"RecipeId\": %d, \"Value\": %d}",
 		expectedId,
 		expectedRecipeId,
 		expectedValue,
@@ -46,5 +46,5 @@ func TestRating_WithInvalidType(t *testing.T) {
 	err := json.Unmarshal([]byte(jsonString), rating)
 
 	assert.NotNil(t, err)
-	assert.Contains(t, err.Error(), "recipe_id")
+	assert.Contains(t, err.Error(), "RecipeId")
 }
