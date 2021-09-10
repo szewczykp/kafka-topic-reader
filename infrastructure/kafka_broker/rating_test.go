@@ -29,7 +29,7 @@ func (suite *RatingConsumerTestSuite) SetupSuite() {
 		strings.ToLower(uuid.New().String()),
 	)
 
-	suite.kafkaTestCluster.WithCommand([]string{"up", "-d"}).Invoke()
+	suite.kafkaTestCluster.WithCommand([]string{"up", "-d", "zookeeper", "kafka"}).Invoke()
 	time.Sleep(5 * time.Second)
 
 	var err error
@@ -64,9 +64,9 @@ func (suite *RatingConsumerTestSuite) TestReceivingRatingMessageFromKafka() {
 	}
 
 	kafkaConsumerUnderTest := ratingConsumer{consumer: suite.consumer}
+	producedMessage, _ := json.Marshal(ratingMessage)
 
 	//when
-	producedMessage, _ := json.Marshal(ratingMessage)
 	produceKafkaMessage(string(producedMessage))
 	consumedMessage, _ := kafkaConsumerUnderTest.GetRatingMessage()
 
