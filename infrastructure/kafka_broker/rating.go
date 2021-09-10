@@ -11,7 +11,7 @@ type ratingConsumer struct {
 	consumer *kafka.Consumer
 }
 
-func (rc *ratingConsumer) GetRatingMessage() (broker.RatingMessage, error) {
+func (rc *ratingConsumer) GetRatingMessage() (vo.RatingMessage, error) {
 	rawRatingMessage, err := rc.consumer.ReadMessage(-1)
 
 	if err == nil {
@@ -21,7 +21,7 @@ func (rc *ratingConsumer) GetRatingMessage() (broker.RatingMessage, error) {
 		return ratingMessage, err
 	} else {
 		fmt.Printf("Consumer error: %v (%v)\n", err, rawRatingMessage)
-		return broker.RatingMessage{}, err
+		return vo.RatingMessage{}, err
 	}
 }
 

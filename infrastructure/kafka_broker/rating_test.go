@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	"github.com/testcontainers/testcontainers-go"
 	"kafka_topic_reader/config"
-	"kafka_topic_reader/domain/broker"
+	"kafka_topic_reader/domain/broker/vo"
 	"reflect"
 	"strings"
 	"testing"
@@ -57,7 +57,7 @@ func (suite *RatingConsumerTestSuite) TearDownSuite() {
 
 func (suite *RatingConsumerTestSuite) TestReceivingRatingMessageFromKafka() {
 	//given
-	ratingMessage := broker.RatingMessage{
+	ratingMessage := vo.RatingMessage{
 		Id:       "7faaa7f2-1079-11ec-82a8-0242ac130003",
 		RecipeId: "c0d7c99e-1079-11ec-82a8-0242ac130003",
 		Value:    5,
