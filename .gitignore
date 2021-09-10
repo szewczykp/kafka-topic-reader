@@ -130,3 +130,8 @@ fabric.properties
 .idea/codestream.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains,go
+/.idea/kafka_topic_reader.iml
+/.idea/modules.xml
+/.idea/remote-targets.xml
+/.idea/sqldialects.xml
+/.idea/vcs.xml
